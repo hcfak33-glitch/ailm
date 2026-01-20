@@ -6,22 +6,26 @@ export default function Home() {
   const [imagePrompt, setImagePrompt] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
+  // Text chat submit
   const handleTextSubmit = async () => {
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: textPrompt }),
     });
+
     const data = await res.json();
     setTextResponse(data.result);
   };
 
+  // Image generation submit
   const handleImageSubmit = async () => {
     const res = await fetch("/api/image", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: imagePrompt }),
     });
+
     const data = await res.json();
     setImageUrl(data.url);
   };
@@ -33,18 +37,21 @@ export default function Home() {
       {/* Text Chat */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Text Chat</h2>
+
         <textarea
           className="w-full border p-2 mb-2"
           rows={3}
           value={textPrompt}
           onChange={(e) => setTextPrompt(e.target.value)}
         />
+
         <button
           onClick={handleTextSubmit}
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
           Send
         </button>
+
         <div className="mt-2 p-2 border rounded bg-gray-100">
           {textResponse || "AI response will appear here..."}
         </div>
@@ -53,6 +60,7 @@ export default function Home() {
       {/* Image Generation */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Image Generation</h2>
+
         <input
           type="text"
           placeholder="Describe your image"
@@ -60,12 +68,14 @@ export default function Home() {
           value={imagePrompt}
           onChange={(e) => setImagePrompt(e.target.value)}
         />
+
         <button
           onClick={handleImageSubmit}
           className="bg-green-500 text-white px-4 py-2 rounded"
         >
           Generate Image
         </button>
+
         {imageUrl && (
           <div className="mt-2">
             <img src={imageUrl} alt="AI Generated" className="rounded" />
@@ -80,4 +90,4 @@ export default function Home() {
       </div>
     </div>
   );
-            }
+}
