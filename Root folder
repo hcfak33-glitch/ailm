@@ -1,0 +1,13 @@
+gemini-ai/
+├─ pages/
+│  ├─ index.js         # Home page (UI)
+│  └─ api/
+│      ├─ chat.js      # Text AI API
+│      ├─ image.js     # Image Generation API
+│      └─ video.js     # Video Upload/Processing API (placeholder)
+├─ public/
+├─ styles/
+│  └─ globals.css      # TailwindCSS styles
+├─ .env.local          # Secrets (API Keys)
+├─ package.json
+└─ tailwind.config.js
